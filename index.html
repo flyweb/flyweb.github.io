@@ -1,11 +1,27 @@
 <html>
 <head>
     <title>FlyWeb</title>
+    <script type="text/javascript" src="discover-services.js"></script>
+    <link rel="stylesheet" href="main.css" type="text/css" />
 <head>
 <body>
     <h1>FlyWeb</h1>
     <p>
         Main github.io page for the flyweb project.
+    </p>
+
+    <hr/>
+    <h2>Discover</h2>
+    <p>
+        If you have the addon installed, you can click the button below to search for locally available services.
+    </p>
+    <p>
+        <div class="button" onclick="clientDiscover()">
+            Discover Clients
+        </div>
+        <br />
+        <div id="client-services-list">
+        </div>
     </p>
     <hr/>
     <h2>Addon</h2>

@@ -1,0 +1,44 @@
+
+.button {
+    margin: 0.5em;
+    border: 2px solid black;
+    background-color: #a090ff;
+    font-size: 14pt;
+    padding: 0.5em;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.flyweb-emblem {
+    color: red;
+}
+
+.client-services-list {
+    margin: 0.5em;
+    border: 2px solid black;
+    background-color: #ffa090;
+    display: inline-block;
+    padding: 0.5em;
+}
+
+.client-service {
+    margin: 0.3em;
+    border-bottom: 1px solid #808080;
+    background-color: #ffa090;
+    display: inline-block;
+}
+.client-service-type {
+    margin: 0.3em;
+    display: inline-block;
+    font-weight: bold;
+}
+.client-service-name {
+    margin: 0.3em;
+    display: inline-block;
+}
+.client-service-establish {
+    margin: 0.3em;
+    background-color: #a08060;
+    display: inline-block;
+    cursor: pointer;
+}
