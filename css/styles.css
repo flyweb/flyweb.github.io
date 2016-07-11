@@ -23,7 +23,13 @@ a:hover {
 }
 
 br + img {
-  margin-top: .5rem;
+  margin: .5rem 0 1rem;
+}
+
+code {
+  background-color: rgba(255,255,255,.75);
+  color: #4d4e53;
+  text-shadow: 0 .05rem 0 #fff;
 }
 
 ol {
@@ -53,15 +59,42 @@ footer:nth-child(odd) {
 .btn-secondary:hover,
 .btn-secondary:focus {
   background-color: rgba(255,255,255,.75);
-  color: #4d4e53;
-  text-shadow: none; /* Prevent inheritance from `body` */
   border: .05rem solid #fff;
+  color: #4d4e53;
+  font-weight: 200;
+  text-shadow: none; /* Prevent inheritance from `body` */
   transition: background-color .15s;
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus {
   background-color: rgba(255,255,255,.95);
+}
+
+.card {
+  background-color: rgba(0,0,0,.6);
+  border: none;
+  transition: background-color .15s;
+}
+
+.card,
+.card:hover,
+.card:focus {
+  font-weight: 200;
+  text-decoration: none;
+}
+
+.card:hover {
+  background-color: rgba(0,0,0,.8);
+}
+
+.card-img-top {
+  opacity: .75;
+  transition: opacity .15s;
+}
+
+.card:hover > .card-img-top {
+  opacity: 1;
 }
 
 .container-fluid {
@@ -71,6 +104,10 @@ footer:nth-child(odd) {
 .content-center {
   margin-right: auto;
   margin-left: auto;
+}
+
+.img-circle {
+  margin-bottom: 1rem;
 }
 
 
