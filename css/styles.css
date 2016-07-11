@@ -10,6 +10,7 @@ body {
 body {
   background-color: #4d4e53;
   color: #fff;
+  font-weight: 200;
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
 }
@@ -18,11 +19,21 @@ a,
 a:focus,
 a:hover {
   color: #fff;
+  font-weight: 500;
+}
+
+br + img {
+  margin-top: .5rem;
+}
+
+ol {
+  line-height: 2rem;
+  text-align: left;
 }
 
 section {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 section,
@@ -108,11 +119,12 @@ footer:nth-child(odd) {
 
 .cover {
   display: table;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .cover-inner {
   display: table-cell;
+  padding: 3rem 1rem;
   vertical-align: middle;
 }
 
