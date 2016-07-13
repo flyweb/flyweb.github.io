@@ -155,14 +155,15 @@ footer:nth-child(odd) {
  */
 
 .cover {
-  display: table;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
 .cover-inner {
-  display: table-cell;
   padding: 3rem 1rem;
-  vertical-align: middle;
+  width: 100%;
 }
 
 
@@ -189,6 +190,22 @@ footer .social-icon {
   height: 1.5rem;
 }
 
+
+/*
+ * Specific overrides
+ */
+#team a {
+  font-weight: 300;
+}
+
+#team p {
+  margin-bottom: 0;
+}
+
+#team .social-icon {
+  height: 1rem;
+  vertical-align: text-bottom;
+}
 
 /*
  * Affix and center
