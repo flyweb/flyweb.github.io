@@ -8,8 +8,8 @@ body {
 }
 
 body {
-  background-color: #4d4e53;
-  color: #fff;
+  background: #4d4e53 url(../img/texture-noise.png);
+  color: rgba(255,255,255,.95);
   font-weight: 200;
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
@@ -115,6 +115,15 @@ footer:nth-child(odd) {
  * Navbar
  */
 
+#navbar {
+  background-color: none;
+  transition: background-color .3s;
+}
+
+#navbar.overlay {
+  background-color: rgba(0,0,0,.75);
+}
+
 .navbar-brand {
   font-size: 1.75rem;
   font-weight: 500;
@@ -130,8 +139,8 @@ footer:nth-child(odd) {
   margin-left: 1rem;
 }
 
-.nav-link {
-  padding: .25rem 0;
+.navbar-nav .nav-link {
+  padding: .7rem 0 .3rem;
   font-weight: 400;
   color: rgba(255,255,255,.5);
   background-color: transparent;

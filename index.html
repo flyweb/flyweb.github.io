@@ -18,16 +18,18 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="150">
-  <nav id="navbar" class="navbar navbar-fixed-top content-center">
-    <a class="navbar-brand" href="#home">FlyWeb <img class="pull-xs-right" src="img/logo-flyweb-white.svg"></a>
-    <ul class="nav navbar-nav pull-xs-right">
-      <li class="nav-item"><a class="nav-link" href="#getting-started">Getting Started</a></li>
-      <li class="nav-item"><a class="nav-link" href="#showcase">Showcase</a></li>
-      <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
-      <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-    </ul>
-  </nav>
+<body data-spy="scroll" data-target="#navbar-inner" data-offset="150">
+  <div id="navbar" class="container-fluid navbar-fixed-top">
+    <nav id="navbar-inner" class="navbar content-center">
+      <a class="navbar-brand nav-link" href="#home">FlyWeb <img class="pull-xs-right" src="img/logo-flyweb-white.svg"></a>
+      <ul class="nav navbar-nav pull-xs-right">
+        <li class="nav-item"><a class="nav-link" href="#getting-started">Getting Started</a></li>
+        <li class="nav-item"><a class="nav-link" href="#showcase">Showcase</a></li>
+        <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
+        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+      </ul>
+    </nav>
+  </div>
 
   <div class="container-fluid">
     <section id="home">
@@ -183,7 +185,7 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
   <script src="js/vendor/tether.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="js/ie10-viewport-bug-workaround.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>
