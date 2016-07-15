@@ -7,7 +7,7 @@ $(function() {
 });
 
 if (navigator.publishServer) {
-  navigator.publishServer('HelloFlyWeb')
+  navigator.publishServer('FlyWeb Remote')
     .then(function(server) {
       server.onfetch = function(evt) {
         var urlParts = evt.request.url.split('?');
