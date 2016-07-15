@@ -1,0 +1,11 @@
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2.65rem;
+  margin-bottom: 0;
+}
+
+.navbar-brand > img {
+  height: 2.5rem;
+  margin-left: .75rem;
+}
