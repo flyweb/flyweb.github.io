@@ -32,8 +32,11 @@ code {
   text-shadow: 0 .05rem 0 #fff;
 }
 
-ol {
+ol, ul {
   line-height: 2rem;
+}
+
+ol {
   text-align: left;
 }
 
