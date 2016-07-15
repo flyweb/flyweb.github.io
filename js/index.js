@@ -23,7 +23,7 @@ if (navigator.publishServer) {
            */
           case '/api/navigate':
             window.location.hash = params.get('hash') || '';
-            evt.respondWith(new Response({ status: 200, statusText: 'OK' }));
+            evt.respondWith(new Response('', { status: 200, statusText: 'OK' }));
             break;
 
           /**
@@ -34,7 +34,29 @@ if (navigator.publishServer) {
            * under the "/remote" path.
            */
           default:
-            evt.respondWith(fetch('/remote' + url));
+            // XXX: Ideally, we should be able to just pass the result of the
+            // `fetch()` call directly to `respondWith()`. However, this will
+            // not work if the page hosting the FlyWeb server is on a host
+            // using HTTP compression (e.g. GitHub Pages). Once HTTP
+            // compression is supported, this can all be reduced to a single
+            // line of code:
+            //
+            // evt.respondWith(fetch('/remote' + url));
+            //
+
+            var contentType;
+            fetch('/remote' + url)
+              .then(function(response) {
+                contentType = response.headers.get('Content-Type');
+                return response.blob();
+              })
+              .then(function(blob) {
+                evt.respondWith(new Response(blob, {
+                  headers: {
+                    'Content-Type': contentType
+                  }
+                }));
+              });
             break;
         }
       };
