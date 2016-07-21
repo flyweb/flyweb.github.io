@@ -138,12 +138,13 @@ footer:nth-child(odd) {
   margin-left: .75rem;
 }
 
-.nav-item + .nav-item {
-  margin-left: 1rem;
+.navbar-nav .nav-item + .nav-item {
+  margin-left: .8rem;
 }
 
 .navbar-nav .nav-link {
   padding: .7rem 0 .3rem;
+  font-size: .95rem;
   font-weight: 400;
   color: rgba(255,255,255,.5);
   background-color: transparent;
@@ -174,7 +175,7 @@ footer:nth-child(odd) {
 }
 
 .cover-inner {
-  padding: 5rem 1rem;
+  padding: 8rem 1rem;
   width: 100%;
 }
 
@@ -214,9 +215,21 @@ footer .social-icon {
   margin-bottom: 0;
 }
 
+#team .col-sm-4 {
+  padding-bottom: 2rem;
+}
+
 #team .social-icon {
   height: 1rem;
   vertical-align: text-bottom;
+}
+
+#community p {
+  padding-bottom: 2rem;
+}
+
+#community li {
+  margin-bottom: .5rem;
 }
 
 /*
