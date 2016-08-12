@@ -47,8 +47,26 @@
           <h1>Getting Started</h1>
           <p class="lead">
             <ol>
-              <li>Install <a href="https://nightly.mozilla.org" target="_blank">Firefox Nightly</a> for Desktop or Android</li>
-              <li>Navigate to <code>about:config</code> and set <code>dom.flyweb.enabled=true</code></li>
+              <li>
+                <ul class="list-unstyled">
+                  <li>Install <a href="https://nightly.mozilla.org" target="_blank">Firefox Nightly</a> for Desktop or Android</li>
+                  <li>
+                    <div class="alert alert-danger" role="alert">
+                      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1294772" target="_blank"><strong>Bug 1294772</strong></a> is currently preventing FlyWeb from working properly on Nightly Windows and Linux builds. This will be resolved very soon. In the meantime, Nightly Mac OS X and Android builds can still be used with this feature.
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ul class="list-unstyled">
+                  <li>Navigate to <code>about:config</code> and set <code>dom.flyweb.enabled=true</code></li>
+                  <li>
+                    <div class="alert alert-danger" role="alert">
+                      <strong>IMPORTANT</strong> To ensure safety, you should NOT enable this flag when using your everyday Firefox <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles" target="_blank">profile</a>. This technology is still in a very early experimental state and although the source code has passed an initial security review, it is still possible that security vulnerabilities exist in this feature.
+                    </div>
+                  </li>
+                </ul>
+              </li>
               <li>
                 <ul class="list-unstyled">
                   <li>
