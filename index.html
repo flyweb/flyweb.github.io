@@ -82,6 +82,7 @@
               </li>
             </ol>
           </p>
+
           <h3>Publishing a server from a web page</h3>
           <p class="text-xs-left">The easiest way to get started building FlyWeb-enabled apps is via the <a href="https://flyweb.github.io/spec/" target="_blank">FlyWeb Web API</a>. This allows ordinary web pages to start local web servers and advertise them as FlyWeb services to nearby browsers.</p>
           <pre><code class="javascript">
@@ -98,6 +99,33 @@ navigator.publishServer('Hello FlyWeb')
   });
           </code></pre>
           <p class="text-xs-left">In the example above, a FlyWeb service will be advertised called "Hello FlyWeb" that will respond with a simple HTML page that echoes the URL requested by the connected client.</p>
+
+          <h3>Building a FlyWeb service on a Raspberry Pi</h3>
+          <p class="text-xs-left">Because FlyWeb services are just local web servers, building a FlyWeb-enabled device with a <a href="https://www.raspberrypi.org" target="_blank">Raspberry Pi</a> is easy. Since <a href="https://nodejs.org" target="_blank">Node.js</a> can run on a Raspberry Pi, its possible to leverage the existing Node.js ecosystem for building server-side web applications including frameworks such as Express. The only additional functionality required to make an ordinary Node.js web server a FlyWeb service is a proper mDNS advertisement. Fortunately, an <a href="https://www.npmjs.com" target="_blank">NPM</a> module called <a href="https://www.npmjs.com/package/mdns" target="_blank">mdns</a> already exists for handling this important detail.</p>
+          <pre><code class="javascript">
+var http = require('http');
+var mdns = require('mdns');
+
+var port = parseInt(process.env.PORT || '3000');
+
+var server = http.createServer(function(request, response) {
+  var html = '&lt;h1&gt;Hello FlyWeb from Node JS!&lt;/h1&gt;' + 
+             '&lt;h3&gt;You requested: ' + request.url + '&lt;/h3&gt;';
+
+  response.writeHead(200, { 'Content-Type': 'text/html' });
+  response.end(html);
+});
+
+var advertisement = mdns.createAdvertisement(mdns.tcp('flyweb'), port, {
+  name: 'Hello Node FlyWeb'
+});
+
+server.listen(port, function() {
+  console.log('Server listening on port ' + port);
+  advertisement.start();
+});
+          </code></pre>
+          <p class="text-xs-left">This <a href="https://github.com/flyweb/examples/tree/master/hello-node-flyweb" target="_blank">example</a> can be run in Node.js on a Raspberry Pi (or laptop) and will advertise a FlyWeb service called "Hello Node FlyWeb" that can be discovered by clients on the local network running Firefox Nightly.</p>
         </div>
       </div>
     </section>
