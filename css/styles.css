@@ -23,6 +23,12 @@ a:hover {
   cursor: pointer;
 }
 
+h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
 br + img {
   margin: .5rem 0 1rem;
 }
@@ -30,15 +36,16 @@ br + img {
 code {
   background-color: rgba(255,255,255,.75);
   color: #4d4e53;
-  text-shadow: 0 .05rem 0 #fff;
-}
-
-ol, ul {
-  line-height: 2rem;
+  text-shadow: 0 .05rem 0 rgba(255,255,255,.75);
 }
 
 ol {
   text-align: left;
+}
+
+li {
+  line-height: 1.5rem;
+  margin-bottom: .5rem;
 }
 
 section {
@@ -211,8 +218,25 @@ footer .social-icon {
 
 
 /*
- * Specific overrides
+ * Highlight.js overrides
  */
+
+pre > code, .hljs {
+  background-color: rgba(0,0,0,.3);
+  border-radius: .25rem;
+  color: #dcdcdc;
+  text-align: left;
+  text-shadow: none;
+  display: block;
+  padding: 0 1rem;
+  overflow-x: auto;
+}
+
+
+/*
+ * Other overrides
+ */
+
 #team a {
   font-weight: 300;
 }
@@ -237,6 +261,7 @@ footer .social-icon {
 #community li {
   margin-bottom: .5rem;
 }
+
 
 /*
  * Affix and center

@@ -11,6 +11,9 @@
   <!-- Bootstrap core CSS -->
   <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Highlight.js CSS for code syntax highlighting -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/zenburn.min.css">
+
   <!-- Custom styles for this page -->
   <link href="css/styles.css" rel="stylesheet">
 </head>
@@ -46,6 +49,7 @@
       <div class="cover content-center">
         <div class="cover-inner">
           <h1>Getting Started</h1>
+          <h3>Setting up Firefox Nightly</h3>
           <p class="lead">
             <ol>
               <li>
@@ -54,7 +58,7 @@
                 </ul>
               <li>
                 <ul class="list-unstyled">
-                  <li>Navigate to <code>about:config</code> and set <code>dom.flyweb.enabled=true</code></li>
+                  <li>Navigate to <code>about:config</code> and toggle on <code>dom.flyweb.enabled</code></li>
                   <li>
                     <div class="alert alert-danger" role="alert">
                       <strong>IMPORTANT</strong> To ensure safety, you should NOT enable this flag when using your everyday Firefox <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles" target="_blank">profile</a>. This technology is still in a very early experimental state and although the source code has passed an initial security review, it is still possible that security vulnerabilities exist in this feature.
@@ -78,6 +82,22 @@
               </li>
             </ol>
           </p>
+          <h3>Publishing a server from a web page</h3>
+          <p class="text-xs-left">The easiest way to get started building FlyWeb-enabled apps is via the <a href="https://flyweb.github.io/spec/" target="_blank">FlyWeb Web API</a>. This allows ordinary web pages to start local web servers and advertise them as FlyWeb services to nearby browsers.</p>
+          <pre><code class="javascript">
+navigator.publishServer('Hello FlyWeb')
+  .then(function(server) {
+    server.onfetch = function(event) {
+      var html = '&lt;h1&gt;Hello FlyWeb!&lt;/h1&gt;' + 
+                 '&lt;h3&gt;You requested: ' + event.request.url + '&lt;/h3&gt;';
+
+      event.respondWith(new Response(html, {
+        headers: { 'Content-Type': 'text/html' }
+      }));
+    };
+  });
+          </code></pre>
+          <p class="text-xs-left">In the example above, a FlyWeb service will be advertised called "Hello FlyWeb" that will respond with a simple HTML page that echoes the URL requested by the connected client.</p>
         </div>
       </div>
     </section>
@@ -214,8 +234,9 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
   <script src="js/vendor/tether.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
   <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
