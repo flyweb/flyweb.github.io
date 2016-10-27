@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="496px" height="400px" viewBox="0 0 496 400" enable-background="new 0 0 496 400" xml:space="preserve">
+<g>
+	<path fill="#FFFFFF" stroke="#4D4E53" stroke-width="2" stroke-miterlimit="10" d="M496,384c0,8.836-7.164,16-16,16H16
+		c-8.836,0-16-7.164-16-16V16C0,7.163,7.164,0,16,0h464c8.836,0,16,7.163,16,16V384z"/>
+	<line fill="#FFFFFF" stroke="#4D4E53" stroke-width="2" stroke-miterlimit="10" x1="0" y1="64" x2="496" y2="64"/>
+	<text transform="matrix(1 0 0 1 13 94.4365)" fill="#4D4E53" font-family="'MyriadPro-Semibold'" font-size="28">Question (QD)</text>
+	<polygon fill="#D7D3C8" stroke="#4D4E53" stroke-width="0.25" stroke-miterlimit="10" points="153.564,135.908 487,135.908 
+		487,198.908 9,198.908 9,135.908 25,135.908 33.281,105 145.281,105 	"/>
+	<rect x="14" y="160.908" fill="#4D4E53" width="468" height="32"/>
+	<text transform="matrix(1 0 0 1 18 184.4229)" fill="#FFFFFF" font-family="'AndaleMono'" font-size="24">_flyweb._tcp._local</text>
+	<text transform="matrix(1 0 0 1 14 155.6484)" fill="#4D4E53" font-family="'MyriadPro-SemiboldIt'" font-size="20">Name</text>
+	<text transform="matrix(1 0 0 1 38 128.9082)" fill="#4D4E53" font-family="'MyriadPro-Regular'" font-size="22">PTR Record</text>
+	<text transform="matrix(1 0 0 1 13 232.4365)" fill="#4D4E53" font-family="'MyriadPro-Semibold'" font-size="28">Answer (AN)</text>
+	<text transform="matrix(1 0 0 1 21 261.0879)" fill="#9D9EA3" font-family="'MyriadPro-It'" font-size="24">(no records)</text>
+	<text transform="matrix(1 0 0 1 13 296.4365)" fill="#4D4E53" font-family="'MyriadPro-Semibold'" font-size="28">Authority (NS)</text>
+	<text transform="matrix(1 0 0 1 21 325.0879)" fill="#9D9EA3" font-family="'MyriadPro-It'" font-size="24">(no records)</text>
+	<text transform="matrix(1 0 0 1 13 360.4365)" fill="#4D4E53" font-family="'MyriadPro-Semibold'" font-size="28">Additional (AR)</text>
+	<text transform="matrix(1 0 0 1 21 389.0879)" fill="#9D9EA3" font-family="'MyriadPro-It'" font-size="24">(no records)</text>
+	<g>
+		<text transform="matrix(1 0 0 1 8 48)" fill="#4D4E53" font-family="'MyriadPro-Semibold'" font-size="44">mDNS Query Packet</text>
+	</g>
+</g>
+</svg>

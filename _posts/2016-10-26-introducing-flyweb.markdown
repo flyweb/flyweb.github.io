@@ -35,6 +35,20 @@ The call to `publishServer()` returns a promise and opens a security prompt to t
 
 When the server gets published, an mDNS announcement is broadcast on the local network with the name specified in the call to `publishServer()` and a `_flyweb._tcp` service type. The PTR record in the mDNS announcement also contains the TCP port that the server is listening on.
 
+<figure class="figure col-sm-8 offset-sm-2">
+  <img src="/img/diagram-mdns-query.svg" class="figure-img img-fluid" alt="mDNS Query Packet">
+  <figcaption class="figure-caption">
+    An mDNS packet for querying FlyWeb services
+  </figcaption>
+</figure>
+
+<figure class="figure col-sm-8 offset-sm-2">
+  <img src="/img/diagram-mdns-response.svg" class="figure-img img-fluid" alt="mDNS Response Packet">
+  <figcaption class="figure-caption">
+    Anatomy of an example mDNS response packet containing a FlyWeb service advertisement
+  </figcaption>
+</figure>
+
 ### Connecting to a FlyWeb service
 
 As explained earlier, FlyWeb is comprised of not only a new API for publishing web servers, but also a user-facing feature in the browser for discovering and connecting to them. In the current implementation in Firefox Nightly, this feature can be found in a toolbar menu that reveals a list of nearby FlyWeb services for the user to choose from. In Firefox for Android, the FlyWeb menu item navigates the user to an _about:flyweb_ page for displaying the same list of services in a mobile-friendly format.
