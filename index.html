@@ -1,273 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="/favicon.ico">
+---
+layout: default
+title: FlyWeb
+permalink: /
+---
 
-  <title>FlyWeb</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Highlight.js CSS for code syntax highlighting -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/zenburn.min.css">
-
-  <!-- Custom styles for this page -->
-  <link href="css/styles.css" rel="stylesheet">
-</head>
-
-<body data-spy="scroll" data-target="#navbar-inner" data-offset="200">
-  <div id="navbar" class="container-fluid navbar-fixed-top">
-    <nav id="navbar-inner" class="navbar content-center">
-      <a class="navbar-brand nav-link" href="#home">FlyWeb <img class="pull-xs-right" src="img/logo-flyweb-white.svg"></a>
-      <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item"><a class="nav-link" href="#getting-started">Getting Started</a></li>
-        <li class="nav-item"><a class="nav-link" href="#showcase">Showcase</a></li>
-        <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
-        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-      </ul>
-    </nav>
+<section id="home">
+  <div class="cover content-center">
+    <div class="cover-inner">
+      {% include home/home.html %}
+    </div>
   </div>
+</section>
 
-  <div class="container-fluid">
-    <section id="home">
-      <div class="cover content-center">
-        <div class="cover-inner">
-          <h1>What Is FlyWeb?</h1>
-          <p class="lead">FlyWeb is a project at Mozilla focused on bringing a new set of APIs to the browser for advertising and discovering local-area web servers.</p>
-          <p class="lead">
-            <a class="btn btn-lg btn-secondary" href="https://flyweb.github.io/spec/" target="_blank">Draft Spec</a>
-            <a class="btn btn-lg btn-secondary" href="https://wiki.mozilla.org/FlyWeb" target="_blank">Mozilla Wiki</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="getting-started">
-      <div class="cover content-center">
-        <div class="cover-inner">
-          <h1>Getting Started</h1>
-          <h3>Setting up Firefox Nightly</h3>
-          <p class="lead">
-            <ol>
-              <li>
-                <ul class="list-unstyled">
-                  <li>Install <a href="https://nightly.mozilla.org" target="_blank">Firefox Nightly</a> for Desktop or Android</li>
-                </ul>
-              <li>
-                <ul class="list-unstyled">
-                  <li>Navigate to <code>about:config</code> and toggle on <code>dom.flyweb.enabled</code></li>
-                  <li>
-                    <div class="alert alert-danger" role="alert">
-                      <strong>IMPORTANT</strong> To ensure safety, you should NOT enable this flag when using your everyday Firefox <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles" target="_blank">profile</a>. This technology is still in a very early experimental state and although the source code has passed an initial security review, it is still possible that security vulnerabilities exist in this feature.
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <ul class="list-unstyled">
-                  <li>
-                    On Desktop, select Customize from the <img src="img/screenshot-hamburger-desktop.jpg" alt="..." style="height: 2rem;"> menu and drag the <img src="img/logo-flyweb-white.svg" alt="FlyWeb" style="height: 2rem;"> icon to any toolbar
-                    <br>
-                    <img class="img-thumbnail" src="img/screenshot-menu-desktop.jpg" alt="Desktop Screenshot" style="height: 18rem;">
-                  </li>
-                  <li>
-                    On Android, tap FlyWeb from the <img src="img/screenshot-hamburger-android.jpg" alt="..." style="height: 2rem;"> menu or enter <code>about:flyweb</code> in the address bar
-                    <br>
-                    <img class="img-thumbnail" src="img/screenshot-menu-android.jpg" alt="Android Screenshot" style="height: 18rem;">
-                  </li>
-                </ul>
-              </li>
-            </ol>
-          </p>
-
-          <h3>Publishing a server from a web page</h3>
-          <p class="text-xs-left">The easiest way to get started building FlyWeb-enabled apps is via the <a href="https://flyweb.github.io/spec/" target="_blank">FlyWeb Web API</a>. This allows ordinary web pages to start local web servers and advertise them as FlyWeb services to nearby browsers.</p>
-          <pre><code class="javascript">
-navigator.publishServer('Hello FlyWeb')
-  .then(function(server) {
-    server.onfetch = function(event) {
-      var html = '&lt;h1&gt;Hello FlyWeb!&lt;/h1&gt;' + 
-                 '&lt;h3&gt;You requested: ' + event.request.url + '&lt;/h3&gt;';
-
-      event.respondWith(new Response(html, {
-        headers: { 'Content-Type': 'text/html' }
-      }));
-    };
-  });
-          </code></pre>
-          <p class="text-xs-left">In the example above, a FlyWeb service will be advertised called "Hello FlyWeb" that will respond with a simple HTML page that echoes the URL requested by the connected client.</p>
-
-          <h3>Building a FlyWeb service on a Raspberry Pi</h3>
-          <p class="text-xs-left">Because FlyWeb services are just local web servers, building a FlyWeb-enabled device with a <a href="https://www.raspberrypi.org" target="_blank">Raspberry Pi</a> is easy. Since <a href="https://nodejs.org" target="_blank">Node.js</a> can run on a Raspberry Pi, its possible to leverage the existing Node.js ecosystem for building server-side web applications including frameworks such as Express. The only additional functionality required to make an ordinary Node.js web server a FlyWeb service is a proper mDNS advertisement. Fortunately, an <a href="https://www.npmjs.com" target="_blank">NPM</a> module called <a href="https://www.npmjs.com/package/mdns" target="_blank">mdns</a> already exists for handling this important detail.</p>
-          <pre><code class="javascript">
-var http = require('http');
-var mdns = require('mdns');
-
-var port = parseInt(process.env.PORT || '3000');
-
-var server = http.createServer(function(request, response) {
-  var html = '&lt;h1&gt;Hello FlyWeb from Node JS!&lt;/h1&gt;' + 
-             '&lt;h3&gt;You requested: ' + request.url + '&lt;/h3&gt;';
-
-  response.writeHead(200, { 'Content-Type': 'text/html' });
-  response.end(html);
-});
-
-var advertisement = mdns.createAdvertisement(mdns.tcp('flyweb'), port, {
-  name: 'Hello Node FlyWeb'
-});
-
-server.listen(port, function() {
-  console.log('Server listening on port ' + port);
-  advertisement.start();
-});
-          </code></pre>
-          <p class="text-xs-left">This <a href="https://github.com/flyweb/examples/tree/master/hello-node-flyweb" target="_blank">example</a> can be run in Node.js on a Raspberry Pi (or laptop) and will advertise a FlyWeb service called "Hello Node FlyWeb" that can be discovered by clients on the local network running Firefox Nightly.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="showcase">
-      <div class="cover content-center">
-        <div class="cover-inner">
-          <h1>Showcase</h1>
-          <p class="lead">Take FlyWeb for a test drive with these example apps and demos</p>
-          <div class="card-columns">
-            <a class="card" href="https://flyweb.github.io/examples/flyweb-gp/Build" target="_blank">
-              <img class="card-img-top img-fluid" src="img/screenshot-flyweb-gp.jpg" alt="FlyWeb GP screenshot">
-              <div class="card-block">
-                <h4 class="card-title">FlyWeb GP</h4>
-                <p class="card-text">
-                  A demonstration of a Unity 3D WebGL racing game that allows players to join in and control the game with their web browser
-                </p>
-              </div>
-            </a>
-            <a class="card" href="https://github.com/flyweb/examples/tree/master/flyweb-quadcopter" target="_blank">
-              <img class="card-img-top img-fluid" src="img/screenshot-flyweb-quadcopter.jpg" alt="FlyWeb Quadcopter screenshot">
-              <div class="card-block">
-                <h4 class="card-title">FlyWeb Quadcopter</h4>
-                <p class="card-text">
-                  Control an AR.Drone quadcopter with your browser using a simple Node.js server that can run on a Raspberry Pi
-                </p>
-              </div>
-            </a>
-            <a class="card" href="https://flyweb.github.io/examples/photo-wall" target="_blank">
-              <img class="card-img-top img-fluid" src="img/screenshot-photo-wall.jpg" alt="Photo Wall screenshot">
-              <div class="card-block">
-                <h4 class="card-title">Photo Wall</h4>
-                <p class="card-text">
-                  A simple photo-sharing app that lets nearby users join via FlyWeb to view photos on a wall and share their own in real-time
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="community">
-      <div class="cover content-center">
-        <div class="cover-inner">
-          <h1>Community</h1>
-          <p class="lead">
-            We are excited to hear about your ideas for using FlyWeb in new and unique ways! Please drop us a line in any of these channels if you have any questions or need any help getting your projects off the ground.
-          </p>
-          <ul class="list-unstyled">
-            <li>
-              <a href="https://www.irccloud.com/invite?channel=%23flyweb&hostname=irc.mozilla.org&port=6697&ssl=1" target="_blank">#flyweb</a> on <a href="https://wiki.mozilla.org/IRC" target="_blank">IRC</a> @ <a href="https://developer.mozilla.org/en-US/docs/Mozilla/QA/Getting_Started_with_IRC" target="_blank">irc.mozilla.org</a> (<a href="http://logs.glob.uno/?c=mozilla%23flyweb" target="_blank">View Log</a>)
-            </li>
-            <li>
-              <a href="https://mozflyweb.slack.com" target="_blank">mozflyweb.slack.com</a> on <a href="https://slack.com" target="_blank">Slack</a> (<a href="https://mozflyweb-slack-invite.herokuapp.com" target="_blank">Sign Up</a>)
-            </li>
-            <li>
-              <a href="https://lists.mozilla.org/listinfo/dev-flyweb" target="_blank">dev-flyweb</a> mailing list on <a href="https://groups.google.com/forum/#!forum/mozilla.dev.flyweb">Google Groups</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="team">
-      <div class="cover content-center">
-        <div class="cover-inner">
-          <h1>Team</h1>
-          <br>
-          <div class="row">
-            <div class="col-sm-4">
-              <img class="img-circle" src="img/team-kannan.jpg">
-              <h5>Kannan Vijayan</h5>
-              <p>
-                <img class="social-icon" src="img/icon-twitter-white.svg" alt="Twitter" title="Twitter">
-                <a href="https://twitter.com/kannan_vijayan" target="_blank">@kannan_vijayan</a>
-              </p>
-              <p>
-                <img class="social-icon" src="img/icon-github-white.svg" alt="GitHub" title="GitHub">
-                <a href="https://github.com/kannanvijayan" target="_blank">kannanvijayan</a>
-              </p>
-            </div>
-            <div class="col-sm-4">
-              <img class="img-circle" src="img/team-justin.jpg">
-              <h5>Justin D'Arcangelo</h5>
-              <p>
-                <img class="social-icon" src="img/icon-twitter-white.svg" alt="Twitter" title="Twitter">
-                <a href="https://twitter.com/justindarc" target="_blank">@justindarc</a>
-              </p>
-              <p>
-                <img class="social-icon" src="img/icon-github-white.svg" alt="GitHub" title="GitHub">
-                <a href="https://github.com/justindarc" target="_blank">justindarc</a>
-              </p>
-            </div>
-            <div class="col-sm-4">
-              <img class="img-circle" src="img/team-jonas.jpg">
-              <h5>Jonas Sicking</h5>
-              <p>
-                <img class="social-icon" src="img/icon-twitter-white.svg" alt="Twitter" title="Twitter">
-                <a href="https://twitter.com/sickingj" target="_blank">@sickingj</a>
-              </p>
-              <p>
-                <img class="social-icon" src="img/icon-github-white.svg" alt="GitHub" title="GitHub">
-                <a href="https://github.com/sicking" target="_blank">sicking</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="content-center">
-        <p>
-          <a href="https://www.mozilla.org/"><img class="logo" src="img/logo-mozilla-white.svg" alt="Mozilla" title="Mozilla"></a>
-        </p>
-        <p>
-          <a href="https://mozflyweb.slack.com"><img class="social-icon" src="img/icon-slack-white.svg" alt="Slack" title="Slack"></a>
-          <a href="https://twitter.com/MozFlyWeb"><img class="social-icon" src="img/icon-twitter-white.svg" alt="Twitter" title="Twitter"></a>
-          <a href="https://github.com/flyweb"><img class="social-icon" src="img/icon-github-white.svg" alt="GitHub" title="GitHub"></a>
-        </p>
-        <p>
-          <a href="https://www.mozilla.org/en-US/privacy/websites/" target="_blank">Privacy Policy</a> &nbsp;
-          <a href="https://www.mozilla.org/en-US/about/legal/" target="_blank">Legal Notices</a> &nbsp;
-          <a href="https://www.mozilla.org/en-US/about/legal/fraud-report/" target="_blank">Report Trademark Abuse</a>
-        </p>
-        <p class="lead">
-          Except where otherwise <a href="https://www.mozilla.org/en-US/about/legal/#site">noted</a>, content of this site is licensed under the <a href="https://www.mozilla.org/en-US/foundation/licensing/website-content">Creative Commons</a> <a href="http://creativecommons.org/licenses/by-sa/3.0">Attribution Share-Alike License v3.0</a> or any later.
-        </p>
-      </div>
-    </footer>
+<section id="getting-started">
+  <div class="cover content-center">
+    <div class="cover-inner">
+      {% include home/getting-started.html %}
+    </div>
   </div>
+</section>
 
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
-  <script src="js/vendor/tether.min.js"></script>
-  <script src="js/vendor/bootstrap.min.js"></script>
-  <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
-  <script src="js/index.js"></script>
-</body>
-</html>
+<section id="showcase">
+  <div class="cover content-center">
+    <div class="cover-inner">
+      {% include home/showcase.html %}
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="cover content-center">
+    <div class="cover-inner">
+      {% include home/community.html %}
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="cover content-center">
+    <div class="cover-inner">
+      {% include home/team.html %}
+    </div>
+  </div>
+</section>

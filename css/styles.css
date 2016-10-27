@@ -23,6 +23,20 @@ a:hover {
   cursor: pointer;
 }
 
+article {
+  text-align: left;
+}
+
+article a,
+article a:focus,
+article a:hover {
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 400;
+}
+
 h3 {
   font-size: 1.5rem;
   margin-top: 2rem;
@@ -40,6 +54,7 @@ code {
 }
 
 ol {
+  padding-left: 2rem;
   text-align: left;
 }
 
@@ -123,7 +138,12 @@ footer:nth-child(odd) {
 }
 
 .img-circle {
+  border-radius: 50%;
   margin-bottom: 1rem;
+}
+
+.text-muted {
+  color: rgba(255,255,255,.65) !important;
 }
 
 
@@ -175,6 +195,15 @@ footer:nth-child(odd) {
   border-bottom-color: #fff;
 }
 
+.navbar-toggler,
+.navbar-toggler:focus {
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.4rem;
+  outline: none;
+  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+}
+
 
 /*
  * Cover
@@ -222,13 +251,13 @@ footer .social-icon {
  */
 
 pre > code, .hljs {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.5);
   border-radius: .25rem;
   color: #dcdcdc;
   text-align: left;
   text-shadow: none;
   display: block;
-  padding: 0 1rem;
+  padding: 1rem;
   overflow-x: auto;
 }
 
@@ -237,12 +266,40 @@ pre > code, .hljs {
  * Other overrides
  */
 
+#posts a {
+  font-weight: 500;
+}
+
+#posts h1 {
+  font-size: 2.25rem;
+  margin-bottom: .25rem;
+}
+
+#posts h1 > a {
+  font-size: 2.25rem;
+  font-weight: 400;
+  margin-bottom: .25rem;
+}
+
+#getting-started img[alt="..."],
+#getting-started img[alt="FlyWeb"] {
+  height: 2rem;
+}
+
+#getting-started .img-thumbnail {
+  height: 18rem;
+}
+
 #team a {
   font-weight: 300;
 }
 
 #team p {
   margin-bottom: 0;
+}
+
+#team .row {
+  margin-top: 1.5rem;
 }
 
 #team .col-sm-4 {
@@ -267,10 +324,29 @@ pre > code, .hljs {
  * Affix and center
  */
 
- @media (min-width: 544px) {
-  .navbar,
-  .content-center {
+@media (max-width: 575px) {
+  #navbar,
+  #navbar.overlay {
+    background-color: rgba(0,0,0,.65);
+  }
+
+  .navbar-toggleable-xs {
+    position: relative;
+    clear: both;
+    float: left;
+    text-align: left;
     width: 100%;
+  }
+
+  .navbar-nav .nav-item {
+    margin-left: 1rem !important;
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-nav .nav-item + .nav-item {
+    margin-left: .6rem;
   }
 }
 
@@ -285,6 +361,10 @@ pre > code, .hljs {
   .navbar,
   .content-center {
     width: 720px;
+  }
+
+  .navbar-nav .nav-item + .nav-item {
+    margin-left: 1rem;
   }
 }
 

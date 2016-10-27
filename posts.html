@@ -1,0 +1,30 @@
+---
+layout: posts
+title: FlyWeb
+permalink: /posts/
+---
+
+{% for post in site.posts %}
+  <article>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      </h1>
+      <p class="post-meta text-muted">
+        <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ post.date | date: "%b %-d, %Y" }}
+        </time>
+        {% if post.author %}
+         • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">{{ post.author }}</span>
+          </span>
+        {% endif %}
+      </p>
+    </header>
+    
+    <div class="post-content" itemprop="articleBody">
+      {{ post.excerpt }}
+      <a class="float-xs-right" href="{{ post.url | relative_url }}">Read more</a>
+    </div>
+  </article>
+{% endfor %}

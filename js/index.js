@@ -1,16 +1,19 @@
 $(function() {
+  var $window = $(window);
   var $navbar = $('#navbar');
 
-  $(window).on('activate.bs.scrollspy', function(evt) {
-    $navbar.toggleClass('overlay', $navbar.find('.nav-link.active').length > 0);
-  });
+  var navbarHeight = $navbar.height();
+
+  $window.on('scroll', function() {
+    $navbar.toggleClass('overlay', $window.scrollTop() > navbarHeight);
+  }).scroll();
 
   if (window.hljs) {
     hljs.initHighlightingOnLoad();
   }
 });
 
-if (navigator.publishServer) {
+if (navigator.publishServer && window.location.pathname === '/') {
   navigator.publishServer('flyweb.github.io Remote Control')
     .then(function(server) {
       server.onfetch = function(evt) {

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  {% include head.html %}
+
+  <body data-spy="scroll" data-target="#navbar-inner" data-offset="200">
+    {% include header.html %}
+
+    <main class="container-fluid" aria-label="Content">
+      {{ content }}
+
+      {% include footer.html %}
+    </main>
+
+    <!-- Load scripts at the end of the body so pages load faster -->
+    {% include scripts.html %}
+  </body>
+</html>
