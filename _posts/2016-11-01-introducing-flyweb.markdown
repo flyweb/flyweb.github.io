@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Introducing FlyWeb"
-date:   2016-10-26 10:26:24 -0400
+date:   2016-11-01 17:15:00 -0400
 categories: posts
 ---
 
@@ -144,7 +144,7 @@ server.listen(3030, function() {
 });
 ```
 
-As you can see, this is just a very simple Node.js web server using the standard `http` module. The only additional bit of magic required to make this service discoverable by the FlyWeb UI in the browser is the mDNS advertisement. Using the `mdns` module, we wait until the HTTP server is listening, then we create an mDNS advertisement with a `_flyweb._tcp` service type. We also specify the port that the HTTP server is listening on as well as the name we want to display to the user when they discover it in the browser. In this case, we are listening on port `3030`, but this value is arbitrary and it can be any port you like.
+As you can see, this is just a very simple Node.js web server using the standard `http` module. The only additional bit of magic required to make this service discoverable by the FlyWeb UI in the browser is the mDNS advertisement. Using the `mdns` module, we wait until the HTTP server is listening, then we create an mDNS advertisement with a `_flyweb._tcp` service type. We also specify the port that the HTTP server is listening on as well as the name we want to display to the user when they discover it in the browser. In this case, we are listening on port 3030, but this value is arbitrary and it can be any port you like.
 
 ##### Embedded HTTP server for ESP8266
 
