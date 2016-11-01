@@ -156,8 +156,25 @@ footer:nth-child(odd) {
   margin-bottom: 1rem;
 }
 
+.share-link > .fa {
+  transition: transform .2s;
+}
+
+.share-link:hover > .fa {
+  transform: scale(1.5);
+}
+
 .text-muted {
   color: rgba(255,255,255,.65) !important;
+}
+
+.tooltip.tooltip-top .tooltip-inner::before, .tooltip.bs-tether-element-attached-bottom .tooltip-inner::before {
+  border-top-color: rgba(255,255,255,.95);
+}
+
+.tooltip-inner {
+  background-color: rgba(255,255,255,.95);
+  color: #a94442;
 }
 
 

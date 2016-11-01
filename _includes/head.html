@@ -7,11 +7,17 @@
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
 
+  <meta property="og:title" content="{{ page.title }}">
+  <meta property="og:image" content="{{ site.url }}{{ '/img/logo-flyweb-512.jpg' | absolute_url }}">
+
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
   <!-- Highlight.js CSS for code syntax highlighting -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/zenburn.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/zenburn.min.css" integrity="sha256-l1EdIP3q4FnAcLeY5yyxDdRtd5e13V7VXLXjuYj2gRA=" crossorigin="anonymous">
 
   <!-- Custom styles for this site -->
   <link rel="stylesheet" href="/css/styles.css">

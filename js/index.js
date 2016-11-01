@@ -8,6 +8,10 @@ $(function() {
     $navbar.toggleClass('overlay', $window.scrollTop() > navbarHeight);
   }).scroll();
 
+  $('[data-toggle="tooltip"').tooltip({
+    offset: '5 0'
+  });
+
   if (window.hljs) {
     hljs.initHighlightingOnLoad();
   }
