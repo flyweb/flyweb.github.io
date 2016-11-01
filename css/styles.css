@@ -49,8 +49,8 @@ br + img {
 
 code {
   background-color: rgba(255,255,255,.75);
-  color: #4d4e53;
-  text-shadow: 0 .05rem 0 rgba(255,255,255,.75);
+  color: #a94442;
+  text-shadow: 0 .05rem 0 rgba(255,255,255,.8);
 }
 
 ol {
@@ -84,6 +84,10 @@ footer:nth-child(odd) {
 .alert {
   line-height: 1.4rem;
   text-shadow: none;
+}
+
+.alert em {
+  font-weight: 500;
 }
 
 .btn-secondary,

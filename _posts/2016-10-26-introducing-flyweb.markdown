@@ -33,27 +33,35 @@ navigator.publishServer('Hello FlyWeb').then(function(server) {
 
 The call to `publishServer()` returns a promise and opens a security prompt to the user asking for permission to create and advertise a local server. If accepted and the server publishes successfully, its promise resolves to a `FlyWebPublishedServer` object that contains an `onfetch()` callback that will be invoked any time a resource is requested from the HTTP server. The `onfetch()` callback expects a `FlyWebFetchEvent` argument which references a standard `Request` object that holds all the details of the HTTP request. If the user denies permission to create the server, the promise will be rejected.
 
-When the server gets published, an mDNS announcement is broadcast on the local network with the name specified in the call to `publishServer()` and a `_flyweb._tcp` service type. The PTR record in the mDNS announcement also contains the TCP port that the server is listening on.
+When the server gets published, an mDNS announcement is broadcast on the local network with the name specified in the call to `publishServer()`. The announcement is sent over the local network via UDP multicast on port 5353 and the mDNS packet is comprised of a PTR, SRV and A record as shown in the diagram below. The PTR record names the `_flyweb._tcp` service type and references an SRV record with the name of the service being advertised. The SRV record then references an A record by its target hostname and specifies the TCP port that the service is listening on. Lastly, the A record specifies the IPv4 address where the service can be reached. Optionally, a TXT record may be included to specify any additional metadata about the service such as the base URL where the service's UI can be accessed. A TXT record may likely be used in future implementations for storing a key for handling encrypted connections.
 
-<figure class="figure col-sm-8 offset-sm-2">
-  <img src="/img/diagram-mdns-query.svg" class="figure-img img-fluid" alt="mDNS Query Packet">
-  <figcaption class="figure-caption">
-    An mDNS packet for querying FlyWeb services
-  </figcaption>
-</figure>
-
-<figure class="figure col-sm-8 offset-sm-2">
-  <img src="/img/diagram-mdns-response.svg" class="figure-img img-fluid" alt="mDNS Response Packet">
-  <figcaption class="figure-caption">
-    Anatomy of an example mDNS response packet containing a FlyWeb service advertisement
-  </figcaption>
-</figure>
+<div class="row">
+  <figure class="figure col-sm-8 offset-sm-2">
+    <img src="/img/diagram-mdns-response.svg" class="figure-img img-fluid" alt="mDNS Response Packet">
+    <figcaption class="figure-caption">
+      Anatomy of an example mDNS response packet containing a FlyWeb service advertisement
+    </figcaption>
+  </figure>
+</div>
 
 ### Connecting to a FlyWeb service
 
 As explained earlier, FlyWeb is comprised of not only a new API for publishing web servers, but also a user-facing feature in the browser for discovering and connecting to them. In the current implementation in Firefox Nightly, this feature can be found in a toolbar menu that reveals a list of nearby FlyWeb services for the user to choose from. In Firefox for Android, the FlyWeb menu item navigates the user to an _about:flyweb_ page for displaying the same list of services in a mobile-friendly format.
 
-> Since FlyWeb is still an experimental API and feature, it is currently only available in *Nightly* builds and it is required that the `dom.flyweb.enabled` pref be turned on under _about:config_
+{:.alert.alert-danger}
+{:role="alert"}
+Since FlyWeb is still an experimental API and feature, it is currently only available in *Nightly* builds and it is required that the `dom.flyweb.enabled` pref be turned on under _about:config_
+
+When populating the list of FlyWeb services, the browser broadcasts an mDNS query packet via UDP multicast on port 5353. All nearby clients advertising FlyWeb services will respond to this query packet with the same mDNS response packet they previously sent when they were first announced. The mDNS query packet for FlyWeb services will always be the same as seen in the diagram below. It simply contains a single PTR record that specifies the `_flyweb._tcp.local` service type.
+
+<div class="row">
+  <figure class="figure col-sm-8 offset-sm-2">
+    <img src="/img/diagram-mdns-query.svg" class="figure-img img-fluid" alt="mDNS Query Packet">
+    <figcaption class="figure-caption">
+      An mDNS packet for querying FlyWeb services
+    </figcaption>
+  </figure>
+</div>
 
 When selecting a FlyWeb service to connect to, the browser generates a random UUID hostname for composing `http://` URLs and a new browser tab is opened with a UUID-based URL that refers to the selected service. The primary reason for randomly generating a hostname like this is to prevent accidental or malicious sharing of origin-specific data such as cookies between two different FlyWeb services. Since FlyWeb enables users to connect to services on local networks, it could be possible to connect to two separate servers on two separate local networks that both share the same local private IP address (e.g. 192.168.1.2). By assigning a new random origin upon connection to a FlyWeb service, we can avoid data leakages between *different* servers that both operate under the same IP address when traveling between networks. In some existing mDNS implementations, `_http._tcp` services can be resolved via the `.local` pseudo-TLD using a hostname provided by the mDNS advertisement. However, this approach is still susceptible to the same potential data leakages if a server either accidentally or maliciously adopts a duplicate hostname of another previously-connected server.
 
