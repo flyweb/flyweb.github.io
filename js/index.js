@@ -12,6 +12,8 @@ $(function() {
     offset: '5 0'
   });
 
+  $('.post-content a').attr('target', '_blank');
+
   if (window.hljs) {
     hljs.initHighlightingOnLoad();
   }
