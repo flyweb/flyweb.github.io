@@ -33,6 +33,10 @@ article a:hover {
   font-weight: 400;
 }
 
+em {
+  margin-right: .1rem;
+}
+
 h1 {
   font-weight: 400;
 }
