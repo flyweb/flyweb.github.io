@@ -37,7 +37,7 @@ When the server gets published, an mDNS announcement is broadcast on the local n
 
 <div class="row">
   <figure class="figure col-sm-8 offset-sm-2">
-    <img src="/img/diagram-mdns-response.svg" class="figure-img img-fluid" alt="mDNS Response Packet">
+    <img src="/img/diagram-mdns-response.png" class="figure-img img-fluid" alt="mDNS Response Packet">
     <figcaption class="figure-caption">
       Anatomy of an example mDNS response packet containing a FlyWeb service advertisement
     </figcaption>
@@ -56,7 +56,7 @@ When populating the list of FlyWeb services, the browser broadcasts an mDNS quer
 
 <div class="row">
   <figure class="figure col-sm-8 offset-sm-2">
-    <img src="/img/diagram-mdns-query.svg" class="figure-img img-fluid" alt="mDNS Query Packet">
+    <img src="/img/diagram-mdns-query.png" class="figure-img img-fluid" alt="mDNS Query Packet">
     <figcaption class="figure-caption">
       An mDNS packet for querying FlyWeb services
     </figcaption>
