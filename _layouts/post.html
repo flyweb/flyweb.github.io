@@ -18,13 +18,13 @@ layout: posts
       {% endif %}
     </p>
     <p class="float-xs-right">
-      <a class="share-link" target="_blank" href="https://twitter.com/share?text={{ page.title }}&url={{ site.url }}{{ page.url | absolute_url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}"
+      <a class="share-link" target="_blank" href="https://twitter.com/share?text={{ page.title }}&url={{ page.url | absolute_url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}"
          data-toggle="tooltip" title="Share on Twitter"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
       
-      <a class="share-link" target="_blank" href="https://www.facebook.com/sharer.php?u={{ site.url }}{{ page.url | absolute_url }}&p[title]={{ page.title }}"
+      <a class="share-link" target="_blank" href="https://www.facebook.com/sharer.php?u={{ page.url | absolute_url }}&p[title]={{ page.title }}"
          data-toggle="tooltip" title="Share on Facebook"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
       
-      <a class="share-link" target="_blank" href="https://plus.google.com/share?url={{ site.url }}{{ page.url | absolute_url }}"
+      <a class="share-link" target="_blank" href="https://plus.google.com/share?url={{ page.url | absolute_url }}"
          data-toggle="tooltip" title="Share on Google+"><i class="fa fa-google-plus-square fa-lg" aria-hidden="true"></i></a>
       
       <!-- <a class="share-link" target="_blank" href="https://pinterest.com/pin/create/button/?url={{ site.url }}{{ page.url | absolute_url }}&description={{ page.title }}"
