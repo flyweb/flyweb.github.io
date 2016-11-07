@@ -11,14 +11,10 @@ permalink: /posts/
         <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
       </h1>
       <p class="post-meta text-muted">
+        <i class="fa fa-calendar"></i>
         <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-          {{ post.date | date: "%b %-d, %Y" }}
+          {{ post.date | date: "%B %-d, %Y" }}
         </time>
-        {% if post.author %}
-         • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span itemprop="name">{{ post.author }}</span>
-          </span>
-        {% endif %}
       </p>
     </header>
     

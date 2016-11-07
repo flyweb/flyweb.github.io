@@ -2,18 +2,22 @@
 layout: posts
 ---
 
+{% assign author = site.data.authors[page.author] %}
+
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header clearfix">
     <h1 class="post-title" itemprop="name headline">
       <a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
     </h1>
     <p class="post-meta text-muted float-xs-left">
+      <i class="fa fa-calendar"></i>
       <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {{ page.date | date: "%b %-d, %Y" }}
+        {{ page.date | date: "%B %-d, %Y" }}
       </time>
-      {% if page.author %}
-       • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <span itemprop="name">{{ page.author }}</span>
+      {% if author %}
+       • <i class="fa fa-user"></i>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <a href="{{ author.twitter }}" target="_blank" itemprop="name">{{ author.name }}</span>
         </span>
       {% endif %}
     </p>

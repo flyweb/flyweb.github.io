@@ -27,12 +27,6 @@ article {
   text-align: left;
 }
 
-article a,
-article a:focus,
-article a:hover {
-  font-weight: 400;
-}
-
 em {
   margin-right: .1rem;
 }
@@ -307,16 +301,18 @@ pre > code, .hljs {
  * Other overrides
  */
 
-#posts a {
-  font-weight: 500;
+.post-header a,
+.post-header a:focus,
+.post-header a:hover {
+  font-weight: normal;
 }
 
-#posts h1 {
+.post-title {
   font-size: 2.25rem;
   margin-bottom: .25rem;
 }
 
-#posts h1 > a {
+.post-title > a {
   font-size: 2.25rem;
   font-weight: 400;
   margin-bottom: .25rem;

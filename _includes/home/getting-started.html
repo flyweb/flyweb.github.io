@@ -6,14 +6,14 @@
   <ol>
     <li>
       <p>
-        Install <a href="https://nightly.mozilla.org" target="_blank">Firefox Nightly</a> for Desktop or Android
+        Install <a href="https://nightly.mozilla.org" target="_blank"><em>Firefox Nightly</em></a> for Desktop or Android
       </p>
     </li>
     <li>
       <p>Navigate to <code>about:config</code> and toggle on <code>dom.flyweb.enabled</code></p>
 
       <p class="alert alert-danger" role="alert">
-        <strong>IMPORTANT</strong> To ensure safety, you should NOT enable this flag when using your everyday Firefox <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles" target="_blank">profile</a>. This technology is still in a very early experimental state and although the source code has passed an initial security review, it is still possible that security vulnerabilities exist in this feature.
+        <strong>IMPORTANT</strong> To ensure safety, you should NOT enable this flag when using your everyday Firefox <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles" target="_blank"><em>profile</em></a>. This technology is still in a very early experimental state and although the source code has passed an initial security review, it is still possible that security vulnerabilities exist in this feature.
       </p>
     </li>
     <li>
@@ -39,7 +39,7 @@
 <h3>Publishing a server from a web page</h3>
 
 <p class="text-xs-left">
-  The easiest way to get started building FlyWeb-enabled apps is via the <a href="https://flyweb.github.io/spec/" target="_blank">FlyWeb Web API</a>. This allows ordinary web pages to start local web servers and advertise them as FlyWeb services to nearby browsers.
+  The easiest way to get started building FlyWeb-enabled apps is via the <a href="https://flyweb.github.io/spec/" target="_blank"><em>FlyWeb Web API</em></a>. This allows ordinary web pages to start local web servers and advertise them as FlyWeb services to nearby browsers.
 </p>
 
 <pre><code class="javascript">navigator.publishServer('Hello FlyWeb').then(function(server) {
@@ -60,7 +60,7 @@
 <h3>Building a FlyWeb service on a Raspberry Pi</h3>
 
 <p class="text-xs-left">
-  Because FlyWeb services are just local web servers, building a FlyWeb-enabled device with a <a href="https://www.raspberrypi.org" target="_blank">Raspberry Pi</a> is easy. Since <a href="https://nodejs.org" target="_blank">Node.js</a> can run on a Raspberry Pi, its possible to leverage the existing Node.js ecosystem for building server-side web applications including frameworks such as Express. The only additional functionality required to make an ordinary Node.js web server a FlyWeb service is a proper mDNS advertisement. Fortunately, an <a href="https://www.npmjs.com" target="_blank">NPM</a> module called <a href="https://www.npmjs.com/package/mdns" target="_blank">mdns</a> already exists for handling this important detail.
+  Because FlyWeb services are just local web servers, building a FlyWeb-enabled device with a <a href="https://www.raspberrypi.org" target="_blank"><em>Raspberry Pi</em></a> is easy. Since <a href="https://nodejs.org" target="_blank"><em>Node.js</em></a> can run on a Raspberry Pi, its possible to leverage the existing Node.js ecosystem for building server-side web applications including frameworks such as Express. The only additional functionality required to make an ordinary Node.js web server a FlyWeb service is a proper mDNS advertisement. Fortunately, an <a href="https://www.npmjs.com" target="_blank"><em>NPM</em></a> module called <a href="https://www.npmjs.com/package/mdns" target="_blank"><em>mdns</em></a> already exists for handling this important detail.
 </p>
 
 <pre><code class="javascript">var http = require('http');
@@ -86,5 +86,5 @@ server.listen(port, function() {
 });</code></pre>
 
 <p class="text-xs-left">
-  This <a href="https://github.com/flyweb/examples/tree/master/hello-node-flyweb" target="_blank">example</a> can be run in Node.js on a Raspberry Pi (or a laptop computer) and will advertise a FlyWeb service called "Hello Node FlyWeb" that can be discovered by clients on the local network running Firefox Nightly.
+  This <a href="https://github.com/flyweb/examples/tree/master/hello-node-flyweb" target="_blank"><em>example</em></a> can be run in Node.js on a Raspberry Pi (or a laptop computer) and will advertise a FlyWeb service called "Hello Node FlyWeb" that can be discovered by clients on the local network running Firefox Nightly.
 </p>
