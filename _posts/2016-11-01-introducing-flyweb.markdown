@@ -19,17 +19,23 @@ Enabling web pages to host local servers and providing the ability for the web b
 Here is an example that uses the FlyWeb API to create a server from a web page that responds with a simple *"Hello FlyWeb"* HTML document.
 
 ```
-navigator.publishServer('Hello FlyWeb').then(function(server) {
-  server.onfetch = function(event) {
-    var html = '<h1>Hello FlyWeb!</h1>' + 
-               '<h3>You requested: ' + event.request.url + '</h3>';
-    event.respondWith(new Response(html, {
-      headers: { 'Content-Type': 'text/html' }
-    }));
-  };
-}).catch(function(error) {
-  console.log('publishServer() failed :-(', error);
-});
+navigator
+  .publishServer('Hello FlyWeb')
+  .then(function(server) {
+    server.onfetch = function(event) {
+      var html = `
+        <h1>Hello FlyWeb!</h1>
+        <h3>You requested: ${ event.request.url }</h3>
+      `;
+      var options = {
+        headers: { 'Content-Type': 'text/html' }
+      };
+      event.respondWith(new Response(html, options));
+    };
+  })
+  .catch(function(error) {
+    console.log('publishServer() failed :-(', error);
+  });
 ```
 
 The call to `publishServer()` returns a promise and opens a security prompt to the user asking for permission to create and advertise a local server. If accepted and the server publishes successfully, its promise resolves to a `FlyWebPublishedServer` object that contains an `onfetch()` callback that will be invoked any time a resource is requested from the HTTP server. The `onfetch()` callback expects a `FlyWebFetchEvent` argument which references a standard `Request` object that holds all the details of the HTTP request. If the user denies permission to create the server, the promise will be rejected.
@@ -73,26 +79,29 @@ So, in the example above, nearby clients would see a *"Hello FlyWeb"* service li
 Its likely that you'll want to serve up additional content from your FlyWeb server beside plain, simple HTML. No problem! Since the FlyWeb API relies on the same `Request` and `Response` objects found in Service Workers, your server can send any type of response body supported by the standard `Response` object from ordinary strings to `Blob` data. By using the Fetch API, we can load in remote resources for a FlyWeb server to respond with.
 
 ```
-navigator.publishServer('Hello with a Logo').then(function(server) {
-  server.onfetch = function(event) {
-    if (event.request.url === '/logo.jpg') {
-      fetch('/assets/logo.jpg').then(function(response) {
-        return response.blob();
-      }).then(function(blob) {
-        event.respondWith(new Response(blob, {
-          headers: { 'Content-Type': 'image/jpeg' }
-        }));
-      });
-    }
-    else {
-      var html = '<h1>Hello FlyWeb!</h1>' + 
-                 '<img src="/logo.jpg">';
-      event.respondWith(new Response(html, {
-        headers: { 'Content-Type': 'text/html' }
-      }));
-    }
-  };
-});
+navigator
+  .publishServer('Hello with a Logo')
+  .then(function(server) {
+    server.onfetch = function(event) {
+      if (event.request.url === '/logo.jpg') {
+        fetch('/assets/logo.jpg')
+          .then(response => response.blob())
+          .then(blob => event.respondWith(new Response(blob, {
+            headers: { 'Content-Type': 'image/jpeg' }
+          }));
+        });
+      } else {
+        var html = `
+          <h1>Hello FlyWeb!</h1>
+          <img src="/logo.jpg" />
+        `;
+        var options = {
+          headers: { 'Content-Type': 'text/html' }
+        };
+        event.respondWith(new Response(html, options));
+      }
+    };
+  });
 ```
 
 When an initial page is loaded for a FlyWeb service, all additional resources on that page can derive their URLs from the page's UUID-based URL. Therefore, in the above example, the root HTTP request will respond with an HTML document that contains an `<img>` element which will fetch *logo.jpg* from the root of the same origin as the initial HTML document. Inside our `onfetch()` callback, we check for requests for that particular resource and then fetch the image remotely before responding with it. This type of HTTP request handling should seem familiar to anyone who has built server-side applications with the standard Node.js [*http*](https://nodejs.org/api/http.html) module.
@@ -131,9 +140,14 @@ var http = require('http');
 var mdns = require('mdns');
 
 var server = http.createServer(function(request, response) {
-  var html = '<h1>Hello FlyWeb from Node.js!</h1>' + 
-             '<h3>You requested: ' + request.url + '</h3>';
-  response.writeHead(200, { 'Content-Type': 'text/html' });
+  var html = `
+    <h1>Hello FlyWeb from Node.js!</h1>
+    <h3>You requested: ${ request.url }</h3>
+  `;
+  var options = {
+    headers: { 'Content-Type': 'text/html' }
+  };
+  response.writeHead(200, options);
   response.end(html);
 });
 
