@@ -122,7 +122,7 @@ To update [*Raspbian*](https://www.raspbian.org/) with the latest version of Nod
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get remove nodejs
-curl -sL https://deb.nodesource.com/setup | sudo bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install nodejs
 ```
 
