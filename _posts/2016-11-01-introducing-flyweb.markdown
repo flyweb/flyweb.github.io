@@ -53,11 +53,11 @@ When the server gets published, an mDNS announcement is broadcast on the local n
 
 ### Connecting to a FlyWeb service
 
-As explained earlier, FlyWeb is comprised of not only a new API for publishing web servers, but also a user-facing feature in the browser for discovering and connecting to them. In the current implementation in [*Firefox Nightly*](https://nightly.mozilla.org/), this feature can be found in a toolbar menu that reveals a list of nearby FlyWeb services for the user to choose from. In [*Firefox for Android*](https://nightly.mozilla.org/#Android), the FlyWeb menu item navigates the user to an _about:flyweb_ page for displaying the same list of services in a mobile-friendly format.
+As explained earlier, FlyWeb is comprised of not only a new API for publishing web servers, but also a user-facing feature in the browser for discovering and connecting to them. In the current implementation in [*Firefox Desktop*](https://www.mozilla.org/en-US/firefox/channel/desktop/#nightly), this feature can be found in a toolbar menu that reveals a list of nearby FlyWeb services for the user to choose from. In [*Firefox for Android*](https://www.mozilla.org/en-US/firefox/channel/android/#nightly), the FlyWeb menu item navigates the user to an _about:flyweb_ page for displaying the same list of services in a mobile-friendly format.
 
 {:.alert.alert-danger}
 {:role="alert"}
-Since FlyWeb is still an experimental API and feature, it is currently only available in [*Nightly*](https://nightly.mozilla.org/) builds and it is required that the `dom.flyweb.enabled` pref be turned on under _about:config_
+Since FlyWeb is still an experimental API and feature, it is currently only available in [*Nightly*](https://www.mozilla.org/en-US/firefox/channel/desktop/#nightly) and [*Developer Edition (Aurora)*](https://www.mozilla.org/en-US/firefox/channel/desktop/#aurora) builds and it is required that the `dom.flyweb.enabled` pref be turned on under _about:config_. Note that [*Nightly*](https://www.mozilla.org/en-US/firefox/channel/desktop/#nightly) builds may occasionally be broken or unstable, so [*Developer Edition (Aurora)*](https://www.mozilla.org/en-US/firefox/channel/desktop/#aurora) builds are recommended.
 
 When populating the list of FlyWeb services, the browser broadcasts an mDNS query packet via UDP multicast on port *5353*. All nearby clients advertising FlyWeb services will respond to this query packet with the same mDNS response packet they previously sent when they were first announced. The mDNS query packet for FlyWeb services will always be the same as seen in the diagram below. It simply contains a single PTR record that specifies the `_flyweb._tcp.local` service type.
 
@@ -207,7 +207,7 @@ Once you've grasped the concept of what FlyWeb is, it doesn't take too long befo
 
 ### Where do we go from here?
 
-As mentioned earlier, an initial "version 0" implementation has landed in [*Firefox Nightly*](https://nightly.mozilla.org/) with the `dom.flyweb.enabled` preference *disabled* by default. Our implementation is currently undergoing a security review to ensure that it is not introducing any new exploitable vulnerabilities before including it in the other release channels.
+As mentioned earlier, an initial "version 0" implementation has landed in [*Firefox Nightly*](https://www.mozilla.org/en-US/firefox/channel/desktop/#nightly) and [*Firefox Developer Edition (Aurora)*](https://www.mozilla.org/en-US/firefox/channel/desktop/#aurora) with the `dom.flyweb.enabled` preference *disabled* by default. Our implementation is currently undergoing a security review to ensure that it is not introducing any new exploitable vulnerabilities before including it in the other release channels.
 
 A team has also been exploring commercial opportunities for FlyWeb revolving around consumer hardware products. From a technical perspective, we would also like to explore the potential to utilize Bluetooth as a transport layer. We believe that Bluetooth could expand the scope for use cases we've already identified and may also enable additional use cases that aren't possible with the current implementation.
 

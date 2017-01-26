@@ -1,12 +1,12 @@
 <h1>Getting Started</h1>
 
-<h3>Setting up Firefox Nightly</h3>
+<h3>Setting up Firefox Developer Edition (Aurora)</h3>
 
 <p class="lead">
   <ol>
     <li>
       <p>
-        Install <a href="https://nightly.mozilla.org" target="_blank"><em>Firefox Nightly</em></a> for Desktop or Android
+        Install <a href="https://www.mozilla.org/en-US/firefox/channel/desktop/#aurora" target="_blank"><em>Firefox Developer Edition</em></a> for Desktop or <a href="https://www.mozilla.org/en-US/firefox/channel/android/#aurora" target="_blank"><em>Firefox Aurora</em></a> for Android
       </p>
     </li>
     <li>
@@ -24,11 +24,11 @@
       <p>
         <img class="img-thumbnail" src="img/screenshot-menu-desktop.jpg" alt="Desktop Screenshot">
       </p>
-      
+
       <p>
         On Android, tap <em>FlyWeb</em> from the <img src="img/screenshot-hamburger-android.jpg" alt="..."> menu or enter <code>about:flyweb</code> in the address bar
       </p>
-      
+
       <p>
         <img class="img-thumbnail" src="img/screenshot-menu-android.jpg" alt="Android Screenshot">
       </p>
@@ -44,7 +44,7 @@
 
 <pre><code class="javascript">navigator.publishServer('Hello FlyWeb').then(function(server) {
   server.onfetch = function(event) {
-    var html = '&lt;h1&gt;Hello FlyWeb!&lt;/h1&gt;' + 
+    var html = '&lt;h1&gt;Hello FlyWeb!&lt;/h1&gt;' +
                '&lt;h3&gt;You requested: ' + event.request.url + '&lt;/h3&gt;';
 
     event.respondWith(new Response(html, {
@@ -69,7 +69,7 @@ var mdns = require('mdns');
 var port = parseInt(process.env.PORT || '3000');
 
 var server = http.createServer(function(request, response) {
-  var html = '&lt;h1&gt;Hello FlyWeb from Node JS!&lt;/h1&gt;' + 
+  var html = '&lt;h1&gt;Hello FlyWeb from Node JS!&lt;/h1&gt;' +
              '&lt;h3&gt;You requested: ' + request.url + '&lt;/h3&gt;';
 
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -86,5 +86,5 @@ server.listen(port, function() {
 });</code></pre>
 
 <p class="text-xs-left">
-  This <a href="https://github.com/flyweb/examples/tree/master/hello-node-flyweb" target="_blank"><em>example</em></a> can be run in Node.js on a Raspberry Pi (or a laptop computer) and will advertise a FlyWeb service called "Hello Node FlyWeb" that can be discovered by clients on the local network running Firefox Nightly.
+  This <a href="https://github.com/flyweb/examples/tree/master/hello-node-flyweb" target="_blank"><em>example</em></a> can be run in Node.js on a Raspberry Pi (or a laptop computer) and will advertise a FlyWeb service called "Hello Node FlyWeb" that can be discovered by clients on the local network running Firefox with FlyWeb enabled.
 </p>
